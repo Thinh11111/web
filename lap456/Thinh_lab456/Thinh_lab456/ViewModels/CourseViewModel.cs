@@ -14,7 +14,8 @@ namespace Thinh_lab456.ViewModels
         [Required]
         [FutureDate] 
         public string Date { get; set; }
-        [Required]   
+        [Required]  
+        [ValidTime] 
         public string Time { get; set; }
         [Required]
 

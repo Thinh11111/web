@@ -7,17 +7,18 @@ using System.Web;
 
 namespace Thinh_lab456.ViewModels
 {
-    public class FutureDate : ValidationAttribute
+    public class ValidTime : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
             DateTime dateTime;
-            var IsValid = DateTime.TryParseExact(Convert.ToString(value),
-                "MM/dd/yyyy",
+            var isValid = DateTime.TryParseExact(Convert.ToString(value),
+                "HH:mm",
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
                 out dateTime);
-            return (IsValid && dateTime> DateTime.Now);
+            return isValid;
         }
+        
     }
 }

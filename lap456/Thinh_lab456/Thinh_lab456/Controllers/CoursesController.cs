@@ -22,7 +22,7 @@ namespace Thinh_lab456.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            var viewModel = new CourseViewModel()
+            var viewModel = new CourseViewModel
             {
                 Categories = _dbContext.Categories.ToList()
             };
@@ -32,6 +32,7 @@ namespace Thinh_lab456.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CourseViewModel viewModel)
         {
             if(!ModelState.IsValid)
