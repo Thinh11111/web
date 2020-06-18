@@ -22,15 +22,6 @@ namespace Thinh_lab456.ViewModels
         public byte Category { get; set; }
         public IEnumerable<Category> Categories { get; set; } 
 
-
-
-
-
-
-
-
-
-//ad
         public DateTime GetDateTime()
         {
             return DateTime.Parse(string.Format("{0} {1}", Date, Time));
