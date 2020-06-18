@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Thinh_lab456.Models;
 using System.Data.Entity;
+using Thinh_lab456.ViewModels;
 
 namespace Thinh_lab456.Controllers
 {
@@ -18,11 +19,19 @@ namespace Thinh_lab456.Controllers
         }
         public ActionResult Index()
         {
-            var upcommingCourse = _dbContext.Courses
+            var upcommingCourses = _dbContext.Courses
                 .Include(c => c.Lecturer)
                 .Include(c => c.Category)
                 .Where(c => c.DateTime > DateTime.Now);
-            return View(upcommingCourse);
+            var viewModel = new CoursesViewModel
+            {
+                UpcommingCourses = upcommingCourses,
+                ShowAction = User.Identity.IsAuthenticated
+
+            };
+
+            return View(viewModel);
+
         }
 
         public ActionResult About()
