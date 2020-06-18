@@ -70,6 +70,22 @@ namespace Thinh_lab456.Controllers
             };
             return View(viewModel);
         }
+        public ActionResult Following()
+        {
+            var userId = User.Identity.GetUserId();
+            var followings = _dbContext.Followings
+                .Where(a => a.FolloweeId == userId)
+                .Select(a => a.Follower)
+                .ToList();
+            var viewModel = new FollwingViewModel
+            {
+                Followings = followings,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+            return View(viewModel);
+        }
+
+
         [Authorize]
         public ActionResult Mine()
         {

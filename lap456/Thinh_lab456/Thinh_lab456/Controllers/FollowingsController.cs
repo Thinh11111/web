@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using System.Data.Entity;
 
 namespace Thinh_lab456.Controllers
 {
@@ -31,6 +31,10 @@ namespace Thinh_lab456.Controllers
             };
             _dbContext.Followings.Add(folowing);
             _dbContext.SaveChanges();
+            folowing = _dbContext.Followings
+                .Where(x => x.FolloweeId == followingDto.FolloweeId && x.FollowerId == userId)
+                .Include(x => x.Followee)
+                .Include(x => x.Follower).SingleOrDefault();
             return Ok();
         }
     }
